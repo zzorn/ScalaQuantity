@@ -16,6 +16,10 @@ object Exponents {
     type Prev <: Exp
 
 /*
+    def isZero: Boolean
+*/
+
+/*
     def value: Int
 */
   }
@@ -31,6 +35,10 @@ object Exponents {
     type Prev = Next#Neg
 
 /*
+    def isZero = true
+*/
+
+    /*
     def value: Int = 0
 */
   }
@@ -45,6 +53,10 @@ object Exponents {
     type Next = NextExp[This]
 
 /*
+    def isZero = false
+*/
+
+/*
     def value: Int = new P().value + 1
 */
   }
@@ -55,6 +67,9 @@ object Exponents {
     type Next = N#Prev#Neg
     type Prev = N#Next#Neg
 
+/*
+    def isZero = false
+*/
 /*
     def value: Int = -(new N().value )
 */
@@ -99,7 +114,10 @@ object Exponents {
   val e9 = new p9
   val e10 = new p10
 
-  implicit val _0ToInt = TypeToValue[p0, Int](0)
+  implicit val p0ToInt = TypeToValue[p0, Int](0)
   implicit def succToInt[P <: NatExp](implicit v : TypeToValue[P, Int]) = TypeToValue[NextExp[P], Int](1 + v.value)
+//  implicit def negToInt[P <: PosExp](implicit v : TypeToValue[P, Int]) = TypeToValue[NegExp[P], Int](-v.value)
+  implicit def negToInt[P <: PosExp](implicit v : TypeToValue[P, Int]) = TypeToValue[NegExp[P], Int](-v.value)
+//  implicit def expToInt[P <: Exp](implicit v : TypeToValue[P, Int]) = TypeToValue[Exp, Int](v.value)
 
 }

@@ -17,6 +17,7 @@ object TestUnits {
 
     val foo = 100*N * 3*J
     println(foo)
+    println(new Length(10))
   }
 
   

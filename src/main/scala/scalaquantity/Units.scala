@@ -61,6 +61,7 @@ object Units {
   type Area               = Quantity[p2, __, __, __, __, __, __]
   type Volume             = Quantity[p3, __, __, __, __, __, __]
   type Speed              = Quantity[p1, __, m1, __, __, __, __]
+  type Velocity           = Speed
   type Acceleration       = Quantity[p1, __, m2, __, __, __, __]
   type Frequency          = Quantity[__, __, m1, __, __, __, __]
   type Force              = Quantity[p1, p1, m2, __, __, __, __]

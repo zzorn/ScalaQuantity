@@ -77,9 +77,6 @@ object Units {
   type CatalyticActivity  = Quantity[__, __, m1, __, __, p1, __]
 
 
-  /** See http://tauday.com/ */
-  private val Tau = 2*Math.Pi
-
   val tera = 1e12
   val giga = 1e9
   val mega = 1e6
@@ -92,12 +89,14 @@ object Units {
   val pico = 1e-12
 
   // Unitless values (angles)
+  /** See http://tauday.com/ */
+  private val Tau = 2*Math.Pi
   /** Unit of radians.  E.g. 2*Pi*radians = 360 degrees. */
   val rad   = new Angle(1)
   /** Unit of turns. E.g. 0.5*turns = 180 degrees */
   val turns = new Angle(Tau)
   /** Unit of degrees. E.g. 90*degrees = 0.25 turns*/
-  val deg   = new Angle(360.0/Tau)
+  val deg   = new Angle(Tau/360.0)
 
   // Length
   /** Meter */

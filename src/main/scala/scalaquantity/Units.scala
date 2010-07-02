@@ -3,6 +3,7 @@ package scalaquantity
 import Exponents._
 
 
+// TODO: Would be nice if the types could also be expressed as e.g. def foo(param: m/s).  Should probably work given inlined types..
 object Units {
 
   case class Quantity[M <: Exp, KG <: Exp, S <: Exp, A <: Exp, K <: Exp, Mol <: Exp, CD <: Exp](value: Double) {
@@ -242,7 +243,16 @@ object Units {
   /** atmosphere (non-standard unit of pressure) = 1013.25 mbar.*/
   val atm  = mbar(1013.25)
 
+  // Imperial units
+  val inch = mm(25.4)
+  val foot = inch(12)
+  val yard = foot(3)
+  val mile = m(1609.344)
 
-  // TODO: Would be nice if the types could also be expressed as e.g. def foo(param: m/s).  Should probably work given inlined types..
+  val gallon = litre(4.54609)
+
+  val ounce = g(28.349523125)
+  val pound = ounce(16)
+
 
 }

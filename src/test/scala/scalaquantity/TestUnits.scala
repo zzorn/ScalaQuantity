@@ -9,16 +9,11 @@ object TestUnits {
 
   def main(args: Array[String]) {
 
-    println(new Speed(1))
-
-    val speed1: Speed = new Speed(10)
-    val speed2: Speed = 10 * m/s
-
-
-    val foo = 100*N * 3*J
-    println(foo)
-    println(new Length(10))
+    val velociraptorSpeed = 25 * m / s
+    val humanRunningSpeed = 10 * km / h
+    val distance = 30 * feet
+    val humanRemainingLifeTime: Time = distance / (velociraptorSpeed - humanRunningSpeed)
+    println("Seconds left to live: " + humanRemainingLifeTime)
   }
 
-  
 }

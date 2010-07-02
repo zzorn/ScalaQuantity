@@ -11,7 +11,7 @@ object Units {
     def +(m : This) = Quantity[M, KG, S, A, K, Mol, CD](value + m.value)
     def -(m : This) = Quantity[M, KG, S, A, K, Mol, CD](value - m.value)
     def *[M2 <: Exp, KG2 <: Exp, S2 <: Exp, A2 <: Exp, K2 <: Exp, Mol2 <: Exp, CD2 <: Exp](m : Quantity[M2, KG2, S2, A2, K2, Mol2, CD2]) = Quantity[M + M2, KG + KG2, S + S2, A + A2, K + K2, Mol + Mol2, CD + CD2](value * m.value)
-    def /[M2 <: Exp, KG2 <: Exp, S2 <: Exp, A2 <: Exp, K2 <: Exp, Mol2 <: Exp, CD2 <: Exp](m : Quantity[M2, KG2, S2, A2, K2, Mol2, CD2]) = Quantity[M - M2, KG - KG2, S - S2, A - A2, K - K2, Mol - Mol2, CD - CD2](value * m.value)
+    def /[M2 <: Exp, KG2 <: Exp, S2 <: Exp, A2 <: Exp, K2 <: Exp, Mol2 <: Exp, CD2 <: Exp](m : Quantity[M2, KG2, S2, A2, K2, Mol2, CD2]) = Quantity[M - M2, KG - KG2, S - S2, A - A2, K - K2, Mol - Mol2, CD - CD2](value / m.value)
     def apply(v : Double) = Quantity[M, KG, S, A, K, Mol, CD](v * value)
 
     override def toString = ""+value
@@ -95,9 +95,9 @@ object Units {
   /** Minute (60 seconds)*/
   val min  = s(60)
   /** Hour (60 minutes)*/
-  val hour = min(60)
+  val h = min(60)
   /** Day (24 hours)*/
-  val day  = hour(24)
+  val day  = h(24)
   /** Julian year, defined as 365.25 days. */
   val year = day(365.25)
 
@@ -235,7 +235,7 @@ object Units {
   /** nautical mile (non standard unit of length) = 1852 meters.*/
   val nauticalMile = m(1852)
   /** knot (non-standard unit of speed) = one nautical mile / hour.*/
-  val knot = nauticalMile / hour
+  val knot = nauticalMile / h
   /** bar (non-standard unit of pressure) = 10^5 Pa.*/
   val bar  = Pa(1e5)
   /** millibar (non-standard unit of pressure) = 10^2 Pa.*/
@@ -245,14 +245,21 @@ object Units {
 
   // Imperial units
   val inch = mm(25.4)
+  val inches = inch
   val foot = inch(12)
+  val feet = foot
   val yard = foot(3)
+  val yards = yard
   val mile = m(1609.344)
+  val miles = mile
 
   val gallon = litre(4.54609)
+  val gallons = gallon
 
   val ounce = g(28.349523125)
+  val ounces = ounce
   val pound = ounce(16)
+  val pounds = pound
 
 
 }

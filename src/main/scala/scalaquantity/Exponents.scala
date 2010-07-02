@@ -4,7 +4,6 @@ import scalaquantity.Utils.TypeToValue
 
 object Exponents {
 
-//  type -[N <: MInt] = N#Neg
   type -[S1 <: Exp, S2 <: Exp] = S1#Sub[S2]
   type +[A1 <: Exp, A2 <: Exp] = A1#Add[A2]
 
@@ -14,14 +13,6 @@ object Exponents {
     type Neg <: Exp
     type Next <: Exp
     type Prev <: Exp
-
-/*
-    def isZero: Boolean
-*/
-
-/*
-    def value: Int
-*/
   }
 
   sealed trait NatExp extends Exp
@@ -33,14 +24,6 @@ object Exponents {
     type Neg = p0
     type Next = NextExp[p0]
     type Prev = Next#Neg
-
-/*
-    def isZero = true
-*/
-
-    /*
-    def value: Int = 0
-*/
   }
 
   sealed trait PosExp extends NatExp
@@ -51,14 +34,6 @@ object Exponents {
     type Neg = NegExp[This]
     type Prev = P
     type Next = NextExp[This]
-
-/*
-    def isZero = false
-*/
-
-/*
-    def value: Int = new P().value + 1
-*/
   }
 
   final class NegExp[N <: PosExp] extends Exp {
@@ -66,16 +41,9 @@ object Exponents {
     type Neg = N
     type Next = N#Prev#Neg
     type Prev = N#Next#Neg
-
-/*
-    def isZero = false
-*/
-/*
-    def value: Int = -(new N().value )
-*/
   }
 
-  // Alias zero exponent to double undersocres, to allow clearer unit definitions
+  // Alias zero exponent to double underscores, to allow clearer unit definitions
   type __ = p0
 
   // Positive exponents
@@ -102,22 +70,20 @@ object Exponents {
   type m9 = p9#Neg
   type m10 = p10#Neg
 
-  val e0 = new p0
-  val e1 = new p1
-  val e2 = new p2
-  val e3 = new p3
-  val e4 = new p4
-  val e5 = new p5
-  val e6 = new p6
-  val e7 = new p7
-  val e8 = new p8
-  val e9 = new p9
-  val e10 = new p10
+  val p0 = new p0
+  val p1 = new p1
+  val p2 = new p2
+  val p3 = new p3
+  val p4 = new p4
+  val p5 = new p5
+  val p6 = new p6
+  val p7 = new p7
+  val p8 = new p8
+  val p9 = new p9
+  val p10 = new p10
 
   implicit val p0ToInt = TypeToValue[p0, Int](0)
-  implicit def succToInt[P <: NatExp](implicit v : TypeToValue[P, Int]) = TypeToValue[NextExp[P], Int](1 + v.value)
-//  implicit def negToInt[P <: PosExp](implicit v : TypeToValue[P, Int]) = TypeToValue[NegExp[P], Int](-v.value)
+  implicit def nextToInt[P <: NatExp](implicit v : TypeToValue[P, Int]) = TypeToValue[NextExp[P], Int](1 + v.value)
   implicit def negToInt[P <: PosExp](implicit v : TypeToValue[P, Int]) = TypeToValue[NegExp[P], Int](-v.value)
-//  implicit def expToInt[P <: Exp](implicit v : TypeToValue[P, Int]) = TypeToValue[Exp, Int](v.value)
 
 }

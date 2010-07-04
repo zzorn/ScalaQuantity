@@ -6,7 +6,7 @@ import scala.math.Pi
 /**
  * Tests units.  If this compiles, then the test is successfull.
  */
-object FoodTest {
+object FoodExample {
 
   def main(args: Array[String]) {
 

@@ -5,7 +5,7 @@ import scalaquantity.Units._
 /**
  * Tests units.  If this compiles, then the test is successfull.
  */
-object VelociraptorTest {
+object VelociraptorExample {
 
   def main(args: Array[String]) {
 

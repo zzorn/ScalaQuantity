@@ -42,39 +42,93 @@ object Units {
   
   implicit def measure(v : Double) = Quantity[__, __, __, __, __, __, __](v)
 
-  // Base units with symbols
-  type Length             = Quantity[P1, __, __, __, __, __, __]; type m   = Length
-  type Mass               = Quantity[__, P1, __, __, __, __, __]; type kg  = Mass
-  type Time               = Quantity[__, __, P1, __, __, __, __]; type s   = Time
-  type Current            = Quantity[__, __, __, P1, __, __, __]; type A   = Current
-  type Temperature        = Quantity[__, __, __, __, P1, __, __]; type K   = Temperature
-  type AmountOfSubstance  = Quantity[__, __, __, __, __, P1, __]; type mol = AmountOfSubstance
-  type LuminousIntensity  = Quantity[__, __, __, __, __, __, P1]; type cd  = LuminousIntensity
+  // Unitless quantity
+  type One                = Quantity[__, __, __, __, __, __, __];
 
-  // Some derived units with symbols and alternative names
-  type Angle              = Quantity[__, __, __, __, __, __, __]; type rad = Angle
-  type Area               = Quantity[P2, __, __, __, __, __, __]; type m2  = Area
-  type Volume             = Quantity[P3, __, __, __, __, __, __]; type m3  = Volume
-  type Speed              = Quantity[P1, __, N1, __, __, __, __];                             type Velocity = Speed
-  type Acceleration       = Quantity[P1, __, N2, __, __, __, __];
-  type Frequency          = Quantity[__, __, N1, __, __, __, __]; type Hz  = Frequency
-  type Force              = Quantity[P1, P1, N2, __, __, __, __]; type N   = Force;           type Newton   = N
-  type Energy             = Quantity[P2, P1, N2, __, __, __, __]; type J   = Energy;          type Joule    = J
-  type Power              = Quantity[P2, P1, N3, __, __, __, __]; type W   = Power;           type Watt     = W
-  type Pressure           = Quantity[N1, P1, N2, __, __, __, __]; type Pa  = Pressure;        type Pascal   = Pa
-  type Voltage            = Quantity[P2, P1, N3, N1, __, __, __]; type V   = Voltage;         type Volt     = V
-  type ElectricCharge     = Quantity[__, __, P1, P1, __, __, __]; type C   = ElectricCharge;  type Coulomb = C
-  type Capacitance        = Quantity[N2, N1, P4, P2, __, __, __]; type F   = Capacitance;     type Farad    = F
-  type ElectricResistance = Quantity[P2, P1, N3, N2, __, __, __]; type Ohm = ElectricResistance
-  type Inductance         = Quantity[P2, P1, N2, N2, __, __, __]; type H   = Inductance;      type Henry    = H
-  type Illuminance        = Quantity[N2, __, __, __, __, __, P1]; type lx  = Illuminance;     type lux      = lx
-  type CatalyticActivity  = Quantity[__, __, N1, __, __, P1, __]; type kat = CatalyticActivity
-  type LuminousFlux       = Quantity[__, __, __, __, __, __, P1]; type lm  = LuminousFlux;    type lumen    = lm 
+  // Base units
+  type Length             = Quantity[P1, __, __, __, __, __, __]; type m   = Length;            type metre    = m; type meter = metre
+  type Mass               = Quantity[__, P1, __, __, __, __, __]; type kg  = Mass;              type kilogram = kg
+  type Time               = Quantity[__, __, P1, __, __, __, __]; type s   = Time;              type second   = s
+  type Current            = Quantity[__, __, __, P1, __, __, __]; type A   = Current;           type Ampere   = A
+  type Temperature        = Quantity[__, __, __, __, P1, __, __]; type K   = Temperature;       type Kelvin   = K
+  type AmountOfSubstance  = Quantity[__, __, __, __, __, P1, __]; type mol = AmountOfSubstance; type mole     = mol
+  type LuminousIntensity  = Quantity[__, __, __, __, __, __, P1]; type cd  = LuminousIntensity; type candela  = cd
 
   // Shorthands for some exponents
   type s2 = s~s
   type s3 = s~s~s
-  type kg2 = kg~kg
+
+  // Supplementary units
+  type PlaneAngle           = One;   type rad = PlaneAngle; type radian = rad;
+  type SolidAngle           = One;   type sr  = SolidAngle; type steradian = sr
+  
+  // Some derived units with symbols and alternative names
+  type Frequency            = One/s;      type Hz  = Frequency;           type Hertz    = Hz
+
+  type Force                = m~kg/s2;    type N   = Force;               type Newton   = N
+  type Energy               = N~m;        type J   = Energy;              type Joule    = J
+  type Power                = J/s;        type W   = Power;               type Watt     = W
+  type Pressure             = N/m2;       type Pa  = Pressure;            type Pascal   = Pa
+
+  type Voltage              = W/A;        type V   = Voltage;             type Volt     = V
+  type ElectricCharge       = s~A;        type C   = ElectricCharge;      type Coulomb  = C
+  type Capacitance          = C/V;        type F   = Capacitance;         type Farad    = F
+  type ElectricResistance   = V/A;        type Ohm = ElectricResistance
+  type Conductance          = A/V;        type S   = Conductance;         type Siemens  = S
+
+  type MagneticFlux         = V~s;        type Wb  = MagneticFlux;        type Weber    = Wb
+  type MagneticFluxDensity  = Wb/m2;      type T   = MagneticFluxDensity; type Tesla    = T
+  type Inductance           = Wb/A;       type H   = Inductance;          type Henry    = H
+
+  type LuminousFlux         = cd~sr;      type lm  = LuminousFlux;        type lumen    = lm
+  type Illuminance          = lm/m2;      type lx  = Illuminance;         type lux      = lx
+
+  type CatalyticActivity    = mol/s;      type kat = CatalyticActivity;   type katal    = kat
+
+  type AbsorbedDose         = J/kg;       type Gy  = AbsorbedDose;        type Gray     = Gy
+  type DoseEquivalent       = J/kg;       type Sv  = DoseEquivalent;      type Sievert  = Sv
+  type IonizingRadiationActivity = One/s; type Bq  = IonizingRadiationActivity; type Becquerel = Bq
+
+  // Derived units without own symbol
+  type Area                 = m~m;        type m2  = Area
+  type Volume               = m~m~m;      type m3  = Volume
+  type Velocity             = m/s;        type Speed = Velocity
+  type Acceleration         = m/s2
+  type AngularVelocity      = rad/s
+  type AngularAcceleration  = rad/s2
+
+  type Density              = kg/m3;
+  type SurfaceDensity       = kg/m2;
+  type Concentration        = mol/m3
+  type CatalyticActivityConcentration = kat/m3
+
+  type DynamicViscosity     = Pa~s;
+  type SurfaceTension       = N/m;
+  type MomentOfForce        = N~m;
+
+  type HeatFluxDensity      = W/m2
+  type Irradiance           = W/m2
+  type HeatCapacity         = J/K
+  type SpecificHeatCapacity = J/kg~K
+  type ThermalConductivity  = W/m~K
+  type MolarHeatCapacity    = J/mol~K
+
+  type SpecificEnergy       = J/kg
+  type EnergyDensity        = J/m3
+  type MolarEnergy          = J/mol
+
+  type ElectricFieldStrength = V/m
+  type ElectricChargeDensity = C/m3
+  type ElectricFluxDensity   = C/m2
+  type Permittivity          = F/m
+  type Permeability          = H/m
+
+  type IonizingRadiationExposure  = C/kg
+  type AbsorbedDoseRate           = Gy/s
+  type RadiantIntensity           = W/sr
+  type Radiance                   = W/m2~sr
+
+
 
   // Prefixes
   val yotta = 1e24
@@ -290,6 +344,78 @@ object Units {
   val nC  = C(nano)
   val pC  = C(pico)
 
+  /** Siemens (conductance) */
+  val S   = new S()
+  val Siemens = S
+  val TS  = S(tera)
+  val GS  = S(giga)
+  val MS  = S(mega)
+  val kS  = S(kilo)
+  val mS  = S(milli)
+  val uS  = S(micro)
+  val nS  = S(nano)
+  val pS  = S(pico)
+
+  /** Weber (Magnetic flux) */
+  val Wb   = new Wb()
+  val Weber= Wb
+  val TWb  = Wb(tera)
+  val GWb  = Wb(giga)
+  val MWb  = Wb(mega)
+  val kWb  = Wb(kilo)
+  val mWb  = Wb(milli)
+  val uWb  = Wb(micro)
+  val nWb  = Wb(nano)
+  val pWb  = Wb(pico)
+
+  /** Tesla (Magnetic flux density) */
+  val T     = new T()
+  val Tesla = T
+  val TT  = T(tera)
+  val GT  = T(giga)
+  val MT  = T(mega)
+  val kT  = T(kilo)
+  val mT  = T(milli)
+  val uT  = T(micro)
+  val nT  = T(nano)
+  val pT  = T(pico)
+
+  /** Gray (Absorbed dose) */
+  val Gy     = new Gy()
+  val Gray = Gy
+  val TGy  = Gy(tera)
+  val GGy  = Gy(giga)
+  val MGy  = Gy(mega)
+  val kGy  = Gy(kilo)
+  val mGy  = Gy(milli)
+  val uGy  = Gy(micro)
+  val nGy  = Gy(nano)
+  val pGy  = Gy(pico)
+
+  /** Sievert (Dose equivalent) */
+  val Sv     = new Sv()
+  val Sievert = Sv
+  val TSv  = Sv(tera)
+  val GSv  = Sv(giga)
+  val MSv  = Sv(mega)
+  val kSv  = Sv(kilo)
+  val mSv  = Sv(milli)
+  val uSv  = Sv(micro)
+  val nSv  = Sv(nano)
+  val pSv  = Sv(pico)
+
+  /** Bequerel(Ionizing radiation activity) */
+  val Bq     = new Bq()
+  val Bequerel = Bq
+  val TBq  = Bq(tera)
+  val GBq  = Bq(giga)
+  val MBq  = Bq(mega)
+  val kBq  = Bq(kilo)
+  val mBq  = Bq(milli)
+  val uBq  = Bq(micro)
+  val nBq  = Bq(nano)
+  val pBq  = Bq(pico)
+
   /** Farad (unit of electric capacitance) */
   val F   = new F()
   val Farad = F
@@ -376,10 +502,10 @@ object Units {
   val Tau = 2*Pi
 
   /** Unit of turns. E.g. 0.5*turns = 180 degrees */
-  val turns = new Angle(Tau)
+  val turns = new rad(Tau)
 
   /** Unit of degrees. E.g. 90*degrees = 0.25 turns*/
-  val deg   = new Angle(Tau/360.0)
+  val deg   = new rad(Tau/360.0)
 
   private val zeroCelsiusInKelvin = 273.15
   /** The temperature of zero celsius in kelvins. */
@@ -416,6 +542,9 @@ object Units {
   val mbar = hPa
   /** atmosphere (non-standard unit of pressure) = 1013.25 mbar.*/
   val atm  = mbar(1013.25)
+
+  val ElectronVolt = J(1.60217733e-19)
+  val eV = ElectronVolt
 
   /** One calorie, as defined by ISO 31-4 to equal 4.184 J.  Used commonly to measure energy in food.*/
   val cal = J(4.184)

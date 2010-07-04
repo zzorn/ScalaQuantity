@@ -3,6 +3,8 @@ package scalaquantity
 import Exponents._
 import scala.math.Pi
 
+// TODO: Add an implicit conversation from ints and doubles to a UnitfulNumber, that has methods such as m, cm, km, etc. to create quantities -> natural syntax
+
 object Units {
 
   trait Unit {
@@ -37,7 +39,7 @@ object Units {
     def /[M2 <: Exp, KG2 <: Exp, S2 <: Exp, A2 <: Exp, K2 <: Exp, Mol2 <: Exp, CD2 <: Exp](m : Quantity[M2, KG2, S2, A2, K2, Mol2, CD2]) = Quantity[M - M2, KG - KG2, S - S2, A - A2, K - K2, Mol - Mol2, CD - CD2](value / m.value)
     def apply(v : Double) = Quantity[M, KG, S, A, K, Mol, CD](v * value)
 
-    override def toString = ""+value
+    override def toString = "" + value
   }
   
   implicit def measure(v : Double) = Quantity[__, __, __, __, __, __, __](v)
@@ -588,6 +590,7 @@ object Units {
 
   val pound = ounce(16)
   val pounds = pound
+  val lb = pound
 
 
 }

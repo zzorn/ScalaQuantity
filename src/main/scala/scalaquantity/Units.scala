@@ -157,6 +157,7 @@ object Units {
 
   
   // Unitless values (angles)
+  val unitlessOne = new One()
   /** Unit of radians.  E.g. 2*Pi*radians = 360 degrees. */
   val rad   = new rad()
   val Trad  = rad(tera)
@@ -592,5 +593,24 @@ object Units {
   val pounds = pound
   val lb = pound
 
+
+/* Is there some way to get expressions like  val foo = 10 m/s  to work?
+
+  implicit def intToQuantity(v: Int): QuantifiedNumber = QuantifiedNumber(v)
+  implicit def doubleToQuantity(v: Double): QuantifiedNumber = QuantifiedNumber(v)
+
+  case class QuantifiedNumber(v: Double) {
+    def m: m = Units.m(v)
+    def s: s = Units.s(v)
+    //def m(d : Quantity[Exp,Exp,Exp,Exp,Exp,Exp,Exp]) = Units.m / d
+//    def m[Q <: Quantity[Exp,Exp,Exp,Exp,Exp,Exp,Exp]](part: Q): m/Q = Units.m(v) / part
+  }
+
+
+  //def / = 1.0
+  //case class Division[Q <: Unit](quantity: Q)
+
+  val foo: m/s = 10 m / s
+*/
 
 }

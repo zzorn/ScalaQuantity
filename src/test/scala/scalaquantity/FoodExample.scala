@@ -10,6 +10,7 @@ object FoodExample {
 
   def main(args: Array[String]) {
 
+/*
     val appleRadius = 3*cm
     val appleEnergyDensity = 52 * cal / (100*g)
     val appleDensity =  1150 * kg/m3
@@ -33,6 +34,7 @@ object FoodExample {
     val bobWalkTime: Time = bobWalkDistance / bobWalkSpeed
 
     println("Bob will walk " + bobWalkDistance + " m for "+bobWalkTime/min+" min on the " +appleEnergy +" J of energy in the "+appleMass+" kg apple.")
+*/
   }
 
 }

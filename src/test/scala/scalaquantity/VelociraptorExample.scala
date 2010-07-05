@@ -9,6 +9,7 @@ object VelociraptorExample {
 
   def main(args: Array[String]) {
 
+/*
     val velociraptorSpeed = 25 * m / s
     val humanRunningSpeed = 10 * km / h
     val distance = 30 * m
@@ -26,8 +27,11 @@ object VelociraptorExample {
 
     println("Human movement distance: " + distanceAtSpeed (0*m, humanRunningSpeed, humanRemainingLifeTime) + " m")
     println("Velociraptor movement distance: " + distanceAtSpeed (0*m, velociraptorSpeed, humanRemainingLifeTime) + " m")
+*/
   }
 
+/*
   def distanceAtSpeed(pos: m, velocity: m/s, duration: s): m = pos + velocity * duration
+*/
 
 }

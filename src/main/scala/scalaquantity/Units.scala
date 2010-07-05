@@ -37,7 +37,8 @@ object Units {
     def -(m : This) = Quantity[M, KG, S, A, K, Mol, CD](value - m.value)
     def *[M2 <: Exp, KG2 <: Exp, S2 <: Exp, A2 <: Exp, K2 <: Exp, Mol2 <: Exp, CD2 <: Exp](m : Quantity[M2, KG2, S2, A2, K2, Mol2, CD2]) = Quantity[M + M2, KG + KG2, S + S2, A + A2, K + K2, Mol + Mol2, CD + CD2](value * m.value)
     def /[M2 <: Exp, KG2 <: Exp, S2 <: Exp, A2 <: Exp, K2 <: Exp, Mol2 <: Exp, CD2 <: Exp](m : Quantity[M2, KG2, S2, A2, K2, Mol2, CD2]) = Quantity[M - M2, KG - KG2, S - S2, A - A2, K - K2, Mol - Mol2, CD - CD2](value / m.value)
-    def apply(v : Double) = Quantity[M, KG, S, A, K, Mol, CD](v * value)
+    
+   // def apply(v : Double) = Quantity[M, KG, S, A, K, Mol, CD](v * value)
 
     override def toString = "" + value
   }
@@ -158,6 +159,7 @@ object Units {
   
   // Unitless values (angles)
   val unitlessOne = new One()
+/*
   /** Unit of radians.  E.g. 2*Pi*radians = 360 degrees. */
   val rad   = new rad()
   val Trad  = rad(tera)
@@ -168,7 +170,51 @@ object Units {
   val urad  = rad(micro)
   val nrad  = rad(nano)
   val prad  = rad(pico)
+*/
 
+  // Length
+  /** meter (unit of length) */
+  val m    = new m()
+  val meter = m
+  val Tm   = tera m
+  val Gm   = giga m
+  val Mm   = mega m
+  val km   = kilo m
+  val dm   = deci m
+  val cm   = centi m
+  val mm   = milli m
+  val um   = micro m
+  val nm   = nano m
+  val pm   = pico m
+
+  // Mass
+  /** gram (0.01 of unit of mass) */
+/*
+  val g    = new kg(1e-3)
+  val gram = g
+  val Tg   = tera*g
+  val Gg   = giga*g
+  val Mg   = mega*g
+  val kg   = kilo*g
+  val mg   = milli*g
+  val ug   = micro*g
+  val ng   = nano*g
+  val pg   = pico*g
+*/
+
+  // Time
+  /** second (unit of time) */
+  val s    = new s()
+  val second = s
+  val Ts   = tera s
+  val Gs   = giga s
+  val Ms   = mega s
+  val ks   = kilo s
+  val ms   = milli s
+  val us   = micro s
+  val ns   = nano s
+  val ps   = pico s
+/*
   // Length
   /** meter (unit of length) */
   val m    = new m()
@@ -592,25 +638,95 @@ object Units {
   val pound = ounce(16)
   val pounds = pound
   val lb = pound
+*/
 
-
-/* Is there some way to get expressions like  val foo = 10 m/s  to work?
+// Is there some way to get expressions like  val foo = 10 m/s  to work?
 
   implicit def intToQuantity(v: Int): QuantifiedNumber = QuantifiedNumber(v)
   implicit def doubleToQuantity(v: Double): QuantifiedNumber = QuantifiedNumber(v)
 
+
+/*
+  type kgDiv = UnitDivisionNumerator[__,P1,__,__,__,__,__]
+  type kgMul = UnitMultiplicationFactor[__,P1,__,__,__,__,__]
+*/
+
   case class QuantifiedNumber(v: Double) {
-    def m: m = Units.m(v)
-    def s: s = Units.s(v)
-    //def m(d : Quantity[Exp,Exp,Exp,Exp,Exp,Exp,Exp]) = Units.m / d
+
+    def m: m = Units.m * v
+    def s: s = Units.s * v
+/*
+    def g: kg = Units.g * v
+    def kg: kg = Units.kg * v
+*/
+
+    def m(mark: UnitDiv): UnitDivisionNumerator[P1,__,__,__,__,__,__] = UnitDivisionNumerator[P1,__,__,__,__,__,__](Units.m)
+    def m(mark: UnitMul): UnitMultiplicationFactor[P1,__,__,__,__,__,__] = UnitMultiplicationFactor[P1,__,__,__,__,__,__](Units.m)
+
+/*    def Tg(mark: UnitDiv): kgDiv = new kgDiv(Units.Tg)
+    def Gg(mark: UnitDiv): kgDiv = new kgDiv(Units.Gg)
+    def Mg(mark: UnitDiv): kgDiv = new kgDiv(Units.Mg)
+
+    def kg(mark: UnitDiv): kgDiv = new kgDiv(Units.kg)
+    def mg(mark: UnitDiv): kgDiv = new kgDiv(Units.mg)
+    def ug(mark: UnitDiv): kgDiv = new kgDiv(Units.ug)
+    def ng(mark: UnitDiv): kgDiv = new kgDiv(Units.ng)
+    def pg(mark: UnitDiv): kgDiv = new kgDiv(Units.pg)
+
+    def Tg(mark: UnitMul): kgMul = new kgMul(Units.Tg)
+    def Gg(mark: UnitMul): kgMul = new kgMul(Units.Gg)
+    def Mg(mark: UnitMul): kgMul = new kgMul(Units.Mg)
+    def kg(mark: UnitMul): kgMul = new kgMul(Units.kg)
+    def mg(mark: UnitMul): kgMul = new kgMul(Units.mg)
+    def ug(mark: UnitMul): kgMul = new kgMul(Units.ug)
+    def ng(mark: UnitMul): kgMul = new kgMul(Units.ng)
+    def pg(mark: UnitMul): kgMul = new kgMul(Units.pg)
+*/
+
+    def s(mark: UnitDiv): UnitDivisionNumerator[__,__,P1,__,__,__,__] = UnitDivisionNumerator[__,__,P1,__,__,__,__](Units.s)
+    def s(mark: UnitMul): UnitMultiplicationFactor[__,__,P1,__,__,__,__] = UnitMultiplicationFactor[__,__,P1,__,__,__,__](Units.s)
+
+    //def m[M <: Exp, KG <: Exp, S <: Exp, A <: Exp, K <: Exp, Mol <: Exp, CD <: Exp](q : Quantity[M,KG,S,A,K,Mol,CD]) = Units.m * q
 //    def m[Q <: Quantity[Exp,Exp,Exp,Exp,Exp,Exp,Exp]](part: Q): m/Q = Units.m(v) / part
   }
 
+  case class UnitDivisionNumerator[M <: Exp, KG <: Exp, S <: Exp, A <: Exp, K <: Exp, Mol <: Exp, CD <: Exp](q: Quantity[M,KG,S,A,K,Mol,CD]) {
+    def m: Quantity[M,KG,S,A,K,Mol,CD]/m = q / Units.m
+/*
+    def g: Quantity[M,KG,S,A,K,Mol,CD]/kg = q / Units.g
+    def kg: Quantity[M,KG,S,A,K,Mol,CD]/kg = q / Units.kg
+*/
+    def s: Quantity[M,KG,S,A,K,Mol,CD]/s = q / Units.s
+  }
 
-  //def / = 1.0
+  case class UnitMultiplicationFactor[M <: Exp, KG <: Exp, S <: Exp, A <: Exp, K <: Exp, Mol <: Exp, CD <: Exp](q: Quantity[M,KG,S,A,K,Mol,CD]) {
+    def m: Quantity[M,KG,S,A,K,Mol,CD]~m = q * Units.m
+/*
+    def g: Quantity[M,KG,S,A,K,Mol,CD]~kg = q * Units.g
+    def kg: Quantity[M,KG,S,A,K,Mol,CD]~kg = q * Units.kg
+*/
+    def s: Quantity[M,KG,S,A,K,Mol,CD]~s = q * Units.s
+  }
+
+
+  sealed trait UnitDiv
+  sealed trait UnitMul
+  object UnitDivInstance extends UnitDiv
+  object UnitMulInstance extends UnitMul
+  val / = UnitDivInstance
+  val * = UnitMulInstance
+
+  //def /[M <: Exp, KG <: Exp, S <: Exp, A <: Exp, K <: Exp, Mol <: Exp, CD <: Exp](q: Quantity[M,KG,S,A,K,Mol,CD]):One/Quantity[M,KG,S,A,K,Mol,CD] = 1.0 / q
   //case class Division[Q <: Unit](quantity: Q)
 
-  val foo: m/s = 10 m / s
-*/
+  val foo1: s~m = 10 m*s
+  val foo2: s/m = 10 s/m
+  val foo3: m/s2 = 10.m/(s*s)
+//  val foo4: kg/s = 10 kg / s
+
+  val i = 1 / 2
+  val j = i / i
+  val k = m / i
+  val l: One/m = i / m
 
 }

@@ -3,13 +3,12 @@ package scalaquantity
 import scalaquantity.Units._
 
 /**
- * Tests units.  If this compiles, then the test is successfull.
+ * Tests units.  If this compiles, then the test is successful.
  */
 object VelociraptorExample {
 
-  def main(args: Array[String]) {
 
-/*
+  def main(args: Array[String]) {
     val velociraptorSpeed = 25 * m / s
     val humanRunningSpeed = 10 * km / h
     val distance = 30 * m
@@ -26,12 +25,8 @@ object VelociraptorExample {
     println("The human can escape for " + humanRemainingLifeTime + " s")
 
     println("Human movement distance: " + distanceAtSpeed (0*m, humanRunningSpeed, humanRemainingLifeTime) + " m")
-    println("Velociraptor movement distance: " + distanceAtSpeed (0*m, velociraptorSpeed, humanRemainingLifeTime) + " m")
-*/
+    println("Velociraptor movement distance: " + distanceAtSpeed (0*m, velociraptorSpeed, humanRemainingLifeTime) + " m (that's one fast velociraptor!)")
   }
 
-/*
   def distanceAtSpeed(pos: m, velocity: m/s, duration: s): m = pos + velocity * duration
-*/
-
 }

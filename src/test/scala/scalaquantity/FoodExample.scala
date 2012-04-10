@@ -4,13 +4,12 @@ import scalaquantity.Units._
 import scala.math.Pi
 
 /**
- * Tests units.  If this compiles, then the test is successfull.
+ * Tests units.  If this compiles, then the test is successful.
  */
 object FoodExample {
 
   def main(args: Array[String]) {
 
-/*
     val appleRadius = 3*cm
     val appleEnergyDensity = 52 * cal / (100*g)
     val appleDensity =  1150 * kg/m3
@@ -20,8 +19,8 @@ object FoodExample {
 
     println("Bob is stranded in a desert.  He has one apple with a radius of "+appleRadius+" m and a density of " + appleDensity + " kg/m3\n" +
             "Apples have an energy density of " + appleEnergyDensity + " J/kg.\n"+
-            "Bob burns " + walkEnergy + " joules per meter when walking.\n" +
-            "Bob walks at " + bobWalkSpeed + " m/s.\n" +
+            "Bob burns " + walkEnergy / (cal/mile) + " calories per mile when walking.\n" +
+            "Bob walks at " + bobWalkSpeed / (miles/h) + " miles/h.\n" +
             "How far will Bob walk on the apple?  How long?")
 
     Thread.sleep(20000) // Dramatic pause!
@@ -33,8 +32,8 @@ object FoodExample {
     val bobWalkDistance: Length = appleEnergy / walkEnergy
     val bobWalkTime: Time = bobWalkDistance / bobWalkSpeed
 
-    println("Bob will walk " + bobWalkDistance + " m for "+bobWalkTime/min+" min on the " +appleEnergy +" J of energy in the "+appleMass+" kg apple.")
-*/
+    println("Bob will walk " + bobWalkDistance / km + " km for "+bobWalkTime/min+" min on the " +appleEnergy +" J of energy in the "+appleMass/g+" g apple.")
+
   }
 
 }

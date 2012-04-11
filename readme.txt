@@ -1,6 +1,7 @@
 = ScalaQuantity =
 
 Library for expressing quantities and units of measurement in Scala in a type safe manner, where the compiler checks that assignments and calculations with the units are correct.
+The unit checking is done at compile time, quantities compile down to a simple wrapper class around a Double.
 
 
 == Usage ==

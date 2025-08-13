@@ -34,9 +34,15 @@ IDE / Compile type errors will not be very readable, as ScalaQuantity is using t
 On the other hand, the errors will be caught at compile and not runtime.
 
 You may need to parenthesize some expressions more than would first be intuitive, e.g.
-> val speed: Speed = 100 * miles / 2 * hours   // Compile error: Will evaluate to 50 mile hours, instead of 50 miles per hour.
+```Scala
+val speed: Speed = 100 * miles / 2 * hours
+```
+Compile error: Will evaluate to 50 mile hours, instead of 50 miles per hour.
 
-> val speed: Speed = 100 * miles / (2 * hours) // Compiles ok, speed is 50 miles/hour.
+```Scala
+val speed: Speed = 100 * miles / (2 * hours)
+```
+Compiles ok, speed is 50 miles/hour.
 
 
 ## Credits

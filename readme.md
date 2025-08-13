@@ -50,7 +50,7 @@ Compiles ok, speed is 50 miles/hour.
 Based on and inspired by existing code for Church Numerals in Scala.
 See e.g.: http://jim-mcbeath.blogspot.com/2008/11/practical-church-numerals-in-scala.html
 
-Contains some code adapted from the Metascala library (http://www.assembla.com/wiki/show/metascala) by Jesper Nordenberg.
+Contains some code adapted from the [Metascala library](http://www.assembla.com/wiki/show/metascala) by Jesper Nordenberg.
 The main difference of ScalaQuantity and Metascala is that ScalaQuantity focuses on just physical units. 
 
 
